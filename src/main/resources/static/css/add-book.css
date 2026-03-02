@@ -1,0 +1,76 @@
+.form-wrapper {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.book-form {
+    margin-top: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+/* Two-column row */
+.form-row {
+    display: flex;
+    gap: 20px;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+/* Buttons */
+.form-buttons {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.save-btn {
+    background-color: #16a34a;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.save-btn:hover {
+    background-color: #15803d;
+}
+
+.back-btn {
+    text-decoration: none;
+    background-color: #64748b;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 5px;
+}
+
+.back-btn:hover {
+    background-color: #475569;
+}
+
+/* Errors */
+.error-message {
+    color: red;
+    font-size: 0.85rem;
+    margin-top: 5px;
+}

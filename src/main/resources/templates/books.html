@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title>Book List</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/books.css}">
+</head>
+
+<body>
+
+    <div class="navbar">
+        <div class="nav-left">
+            <strong>BookStore</strong>
+        </div>
+        <div class="nav-right">
+            <a th:href="@{/books}">Books</a>
+
+            <div sec:authorize="hasRole('ADMIN')" class="admin-link">
+                <a th:href="@{/admin/dashboard}">Dashboard</a>
+            </div>
+
+            <form th:action="@{/logout}" method="post" class="logout-form">
+                <button type="submit" class="logout-btn">Logout</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="page-header">
+            <h1>Book List</h1>
+
+            <div sec:authorize="hasRole('ADMIN')">
+                <a class="add-btn" th:href="@{/add-book}">+ Add Book</a>
+            </div>
+        </div>
+
+        <div class="filter-section">
+            <form th:action="@{/books}" method="get">
+
+                <input type="text"
+                       name="keyword"
+                       th:value="${keyword}"
+                       placeholder="Search by title" />
+
+                <select name="categoryId">
+                    <option value="">All Categories</option>
+                    <option th:each="cat : ${categories}"
+                            th:value="${cat.id}"
+                            th:text="${cat.name}"
+                            th:selected="${cat.id == categoryId}">
+                    </option>
+                </select>
+
+                <button type="submit" class="filter-btn">Apply</button>
+            </form>
+        </div>
+
+        <div th:if="${successMessage}" class="success-message">
+            <p th:text="${successMessage}"></p>
+        </div>
+
+        <div th:if="${errorMessage}" class="error-message">
+            <p th:text="${errorMessage}"></p>
+        </div>
+
+        <table class="book-table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Category</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="book : ${books}">
+                <td th:text="${book.id}"></td>
+
+                <td>
+                    <a th:href="@{'/book/' + ${book.id}}"
+                       th:text="${book.title}">
+                    </a>
+                </td>
+
+                <td th:text="${book.author}"></td>
+                <td th:text="${book.price}"></td>
+                <td th:text="${book.quantity}"></td>
+                <td th:text="${book.category != null ? book.category.name : 'No Category'}"></td>
+
+                <td class="action-buttons">
+                    <div sec:authorize="hasRole('ADMIN')">
+                        <a class="edit-btn"
+                           th:href="@{'/edit-book/' + ${book.id}}">Edit</a>
+
+                        <a class="delete-btn"
+                           th:href="@{'/delete-book/' + ${book.id}}">Delete</a>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div th:if="${totalPages > 1}" class="pagination">
+            <a th:if="${currentPage > 0}"
+               th:href="@{/books(page=${currentPage - 1},
+                                 keyword=${keyword},
+                                 sortField=${sortField},
+                                 sortDir=${sortDir})}">
+                Previous
+            </a>
+
+            <span th:each="i : ${#numbers.sequence(0, totalPages - 1)}">
+                <a th:href="@{/books(page=${i},
+                                     keyword=${keyword},
+                                     sortField=${sortField},
+                                     sortDir=${sortDir})}"
+                   th:text="${i + 1}">
+                </a>
+            </span>
+
+            <a th:if="${currentPage < totalPages - 1}"
+               th:href="@{/books(page=${currentPage + 1},
+                                 keyword=${keyword},
+                                 sortField=${sortField},
+                                 sortDir=${sortDir})}">
+                Next
+            </a>
+        </div>
+
+    </div>
+    
+    <footer class="footer">
+        <div class="footer-content">
+            <p>© 2026 BookStore | Built with Spring Boot & Thymeleaf</p>
+            <p class="footer-sub">
+                Admin Panel Project – Developed by Kristian Lala
+            </p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
+
+

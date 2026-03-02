@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Register</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/register.css}">
+</head>
+
+<body>
+
+    <div class="register-container">
+
+        <div class="register-card">
+
+            <h2>Register</h2>
+
+            <form th:action="@{/register}" method="post" th:object="${user}">
+
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" name="username" required />
+                    <div class="error-message"
+                         th:if="${#fields.hasErrors('username')}"
+                         th:errors="*{username}">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" name="password" required />
+                    <div class="error-message"
+                         th:if="${#fields.hasErrors('password')}"
+                         th:errors="*{password}">
+                    </div>
+                </div>
+
+                <button type="submit">Register</button>
+
+            </form>
+
+            <div class="register-link">
+                <a th:href="@{/login}">Back to Login</a>
+            </div>
+
+        </div>
+
+    </div>
+    
+    <footer class="footer">
+        <div class="footer-content">
+            <p>© 2026 BookStore | Built with Spring Boot & Thymeleaf</p>
+            <p class="footer-sub">
+                Admin Panel Project – Developed by Kristian Lala
+            </p>
+        </div>
+    </footer>
+</body>
+
+</html>

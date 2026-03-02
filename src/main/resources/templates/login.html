@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+</head>
+<body>
+
+    <div class="login-container">
+
+        <div class="login-card">
+
+            <h2>Login</h2>
+
+            <form th:action="@{/login}" method="post">
+
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" name="username"/>
+                </div>
+
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" name="password"/>
+                </div>
+
+                <button type="submit">Login</button>
+
+            </form>
+
+            <div class="login-link">
+                <a th:href="@{/register}">Create Account</a>
+            </div>
+
+            <div class="error-message" th:if="${param.error}">
+                Invalid username or password.
+            </div>
+
+            <div class="success-message" th:if="${param.logout}">
+                You have been logged out.
+            </div>
+
+        </div>
+
+    </div>
+    
+    <footer class="footer">
+        <div class="footer-content">
+            <p>© 2026 BookStore | Built with Spring Boot & Thymeleaf</p>
+            <p class="footer-sub">
+                Admin Panel Project – Developed by Kristian Lala
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}">
+
+</head>
+
+<body>
+
+    <div class="navbar">
+        <div class="nav-left">
+            <strong>BookStore</strong>
+        </div>
+        <div class="nav-right">
+            <a th:href="@{/books}">Books</a>
+
+            <form th:action="@{/logout}" method="post" class="logout-form">
+                <button type="submit" class="logout-btn">Logout</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="dashboard-wrapper">
+
+            <h1>Admin Dashboard</h1>
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+                    <h3>Total Books</h3>
+                    <p th:text="${stats.totalBooks}"></p>
+                </div>
+
+                <div class="stat-card">
+                    <h3>Total Categories</h3>
+                    <p th:text="${stats.totalCategories}"></p>
+                </div>
+
+                <div class="stat-card">
+                    <h3>Total Stock</h3>
+                    <p th:text="${stats.totalStock}"></p>
+                </div>
+
+                <div class="stat-card danger">
+                    <h3>Out Of Stock</h3>
+                    <p th:text="${stats.outOfStock}"></p>
+                </div>
+
+                <div class="stat-card wide">
+                    <h3>Most Expensive Book</h3>
+                    <p th:text="${stats.mostExpensiveBook != null ? stats.mostExpensiveBook.title : 'N/A'}"></p>
+                </div>
+
+            </div>
+
+            <div class="dashboard-actions">
+                <a th:href="@{/books}" class="back-btn">Back to Books</a>
+            </div>
+
+        </div>
+
+    </div>
+    
+    <footer class="footer">
+        <div class="footer-content">
+            <p>© 2026 BookStore | Built with Spring Boot & Thymeleaf</p>
+            <p class="footer-sub">
+                Admin Panel Project – Developed by Kristian Lala
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,150 @@
+/* ===============================
+   GLOBAL RESET & LAYOUT
+=================================*/
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f4f6f9;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Main page wrapper */
+.container {
+    flex: 1;
+    max-width: 1000px;
+    margin: 40px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+/* ===============================
+   NAVBAR
+=================================*/
+
+.navbar {
+    background-color: #1e293b;
+    color: white;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: 500;
+}
+
+.navbar a:hover {
+    opacity: 0.8;
+}
+
+/* Logout form inside navbar */
+.logout-form {
+    display: inline;
+    margin-left: 20px;
+}
+
+.logout-btn {
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.logout-btn:hover {
+    opacity: 0.8;
+}
+
+/* ===============================
+   GLOBAL FORM STYLING
+=================================*/
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input,
+textarea,
+select {
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+textarea {
+    resize: vertical;
+}
+
+/* ===============================
+   GLOBAL BUTTON STYLE
+=================================*/
+
+button {
+    padding: 10px 15px;
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+button:hover {
+    background-color: #1d4ed8;
+}
+
+/* ===============================
+   MESSAGES
+=================================*/
+
+.error {
+    color: #dc2626;
+    font-size: 0.9em;
+}
+
+.success {
+    color: #16a34a;
+    font-size: 0.9em;
+}
+
+/* ===============================
+   FOOTER
+=================================*/
+
+.footer {
+    background-color: #1e293b;
+    color: #e2e8f0;
+    padding: 20px 0;
+    margin-top: 40px;
+}
+
+.footer-content {
+    text-align: center;
+    font-size: 14px;
+}
+
+.footer-sub {
+    font-size: 12px;
+    margin-top: 5px;
+    color: #94a3b8;
+}

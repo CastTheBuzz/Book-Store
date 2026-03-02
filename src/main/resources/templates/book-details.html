@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Book Details</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/book-details.css}">
+</head>
+<body>
+
+    <div class="navbar">
+        <div class="nav-left">
+            <strong>BookStore</strong>
+        </div>
+        <div class="nav-right">
+            <a th:href="@{/books}">Books</a>
+
+            <form th:action="@{/logout}" method="post" class="logout-form">
+                <button type="submit" class="logout-btn">Logout</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="details-wrapper">
+
+            <!-- LEFT SIDE - IMAGE -->
+            <div class="book-image">
+                <img th:if="${book.imagePath != null}"
+                     th:src="@{'/uploads/' + ${book.imagePath}}"
+                     alt="Book Image"/>
+
+                <div th:if="${book.imagePath == null}" class="no-image">
+                    No Image Available
+                </div>
+            </div>
+
+            <!-- RIGHT SIDE - INFO -->
+            <div class="book-info">
+
+                <h1 th:text="${book.title}"></h1>
+
+                <p class="author" th:text="${book.author}"></p>
+
+                <p class="price">
+                    $<span th:text="${book.price}"></span>
+                </p>
+
+                <p class="quantity">
+                    In Stock:
+                    <span th:text="${book.quantity}"></span>
+                </p>
+
+                <div class="description">
+                    <h3>Description</h3>
+                    <p th:text="${book.description}"></p>
+                </div>
+
+                <div class="details-buttons">
+                    <a th:href="@{/books}" class="back-btn">Back to List</a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>© 2026 BookStore | Built with Spring Boot & Thymeleaf</p>
+            <p class="footer-sub">
+                Admin Panel Project – Developed by Kristian Lala
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

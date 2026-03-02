@@ -1,0 +1,122 @@
+/* Page Header */
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+/* Add Button */
+.add-btn {
+    text-decoration: none;
+    background-color: #2563eb;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+}
+
+.add-btn:hover {
+    background-color: #1d4ed8;
+}
+
+/* Filter Section */
+.filter-section {
+    margin-bottom: 20px;
+}
+
+.filter-section form {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.filter-section input,
+.filter-section select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.filter-btn {
+    padding: 8px 12px;
+    background-color: #16a34a;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.filter-btn:hover {
+    background-color: #15803d;
+}
+
+/* Table */
+.book-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.book-table th {
+    background-color: #f1f5f9;
+    padding: 10px;
+    text-align: left;
+}
+
+.book-table td {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.book-table tr:hover {
+    background-color: #f9fafb;
+}
+
+.book-table a {
+    color: #2563eb;
+    text-decoration: none;
+}
+
+.book-table a:hover {
+    text-decoration: underline;
+}
+
+/* Action Buttons */
+.action-buttons a {
+    margin-right: 8px;
+}
+
+.edit-btn {
+    color: #2563eb;
+}
+
+.delete-btn {
+    color: #dc2626;
+}
+
+/* Pagination */
+.pagination {
+    margin-top: 20px;
+}
+
+.pagination a {
+    margin-right: 8px;
+    color: #2563eb;
+    text-decoration: none;
+}
+
+.pagination a:hover {
+    text-decoration: underline;
+}
+
+/* Messages */
+.success-message {
+    color: green;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.error-message {
+    color: red;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
