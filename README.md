@@ -1,120 +1,21 @@
-# 📚 Bookstore Application
+# 📚 Bookstore Management System
 
-## 🌐 Overview
+A full-stack web application built with **Spring Boot** and **PostgreSQL** that allows users to manage books with authentication and role-based access control.
 
-The Bookstore Application is a full-stack web system built with Spring Boot that allows users to browse, manage, and organize books by category.  
-
-It provides both:
-
-- A web interface (Thymeleaf templates)
-- JSON-based endpoints for data interaction
-
-The system supports book management, category organization, user registration, authentication, and role-based access control.
-
-This project demonstrates backend architecture, REST principles, database integration, and secure user management in a production-ready Spring Boot environment.
+This project was originally developed as a university assignment and later improved into a portfolio-ready production deployment.
 
 ---
 
-# 🎯 Main Features
+## 🚀 Live Demo
 
-## 📖 Book Management
-- View all books
-- Add new books (Admin only)
-- Edit existing books (Admin only)
-- Delete books (Admin only)
-- Assign books to categories
+🌐 **Live Application:**  
+https://your-render-url.onrender.com  
 
-Each book includes:
-- Title
-- Author
-- Year
-- ISBN
-- Price
-- Category reference
+*(Replace with your actual Render link)*
 
 ---
 
-## 🗂️ Category Management
-- Predefined categories created on startup
-- Books are linked to categories
-- Categories help organize inventory logically
-
-Example categories:
-- Programming
-- Science
-- Finance
-- Fiction
-
----
-
-## 👤 User System
-- User registration
-- Secure login
-- Role-based permissions
-- Password encryption using BCrypt
-
-Roles:
-- `ROLE_USER` – Can browse books
-- `ROLE_ADMIN` – Can manage books (create, edit, delete)
-
----
-
-## 🔄 JSON Support (REST Capabilities)
-
-In addition to the web interface, the application supports JSON-based interaction.
-
-This allows:
-
-- Retrieving book data as JSON
-- Sending POST requests with JSON payloads
-- API-style interaction using tools like Postman or curl
-
-Example JSON structure for creating a book:
-
-```json
-{
-  "title": "Clean Code",
-  "author": "Robert C. Martin",
-  "year": 2008,
-  "isbn": "9780132350884",
-  "price": 39.99,
-  "category": {
-    "id": 1
-  }
-}
-```
-
-This makes the system flexible for both frontend rendering and API consumption.
-
----
-
-# 🏗️ Technical Architecture
-
-The project follows a layered Spring Boot MVC architecture:
-
-Controller → Service → Repository → Database
-
-### Layers Explained
-
-**Controller Layer**
-- Handles HTTP requests
-- Returns either HTML views or JSON responses
-
-**Service Layer**
-- Business logic
-- Security authentication handling
-
-**Repository Layer**
-- JPA repositories for database operations
-- Uses Hibernate for ORM
-
-**Database**
-- PostgreSQL
-- Cloud-hosted in production
-
----
-
-# 🛠️ Technology Stack
+## 🛠 Tech Stack
 
 ### Backend
 - Java 21
@@ -125,173 +26,176 @@ Controller → Service → Repository → Database
 
 ### Frontend
 - Thymeleaf
-- HTML
-- CSS
+- HTML5
+- CSS3
 
 ### Database
 - PostgreSQL
 
 ### Deployment
-- Docker
-- Render (Cloud Hosting)
-- Git & GitHub
+- Render (Web Service)
+- Render PostgreSQL (Managed Database)
 
 ---
 
-# 🗄️ Database Design
+## ✨ Features
 
-## Main Entities
-
-### Book
-- id
-- title
-- author
-- year
-- isbn
-- price
-- category (Many-to-One relationship)
-
-### Category
-- id
-- name
-- books (One-to-Many relationship)
-
-### User
-- id
-- username
-- password (encrypted)
-- role
+- 🔐 User Registration & Login
+- 👤 Role-Based Access Control (ADMIN / USER)
+- 📚 Add, Edit, Delete Books (Admin)
+- 🔎 Search & Pagination
+- 🖼 Image Upload for Books
+- 📖 Book Description Support
+- 🎨 Responsive UI Styling
+- 🌍 Deployed to Cloud (Render)
 
 ---
 
-# 🔐 Security Overview
+## 🏗 Architecture
 
-- Form-based login
-- BCrypt password hashing
-- Custom UserDetailsService
-- Role-based access restrictions
-- Admin-only endpoints protected via Spring Security
+The application follows a standard layered architecture:
 
-Passwords are never stored in plain text.
+Controller → Service → Repository → Database
+
+- Controllers handle HTTP requests
+- Services contain business logic
+- Repositories interact with PostgreSQL
+- Thymeleaf renders dynamic views
 
 ---
 
-# 🚀 Running the Application
+## 🗄 Database Structure
 
-## Run Locally
+Main Tables:
 
-1. Clone repository
+- users
+- roles
+- books
+
+Hibernate auto-generates schema using:
+
+```
+spring.jpa.hibernate.ddl-auto=update
+```
+
+---
+
+## ⚙ Environment Variables (Production)
+
+The application uses environment variables for secure deployment:
+
+```
+spring.datasource.url=${DB_URL}
+spring.datasource.username=${DB_USERNAME}
+spring.datasource.password=${DB_PASSWORD}
+```
+
+These are configured inside Render.
+
+---
+
+## 🖥 Running Locally
+
+### 1️⃣ Clone Repository
 
 ```
 git clone https://github.com/yourusername/bookstore.git
 cd bookstore
 ```
 
-2. Configure PostgreSQL database
+### 2️⃣ Configure application.properties
 
-Update `application.properties`:
+For local development:
 
 ```
 spring.datasource.url=jdbc:postgresql://localhost:5432/bookstore
-spring.datasource.username=your_username
-spring.datasource.password=your_password
+spring.datasource.username=postgres
+spring.datasource.password=yourpassword
 ```
 
-3. Run application
+### 3️⃣ Run Application
+
+Windows:
 
 ```
-mvnw spring-boot:run
+mvnw.cmd spring-boot:run
 ```
 
-Open:
+Mac/Linux:
 
 ```
-http://localhost:8080
+./mvnw spring-boot:run
 ```
 
----
-
-# 🐳 Production Deployment
-
-The application is containerized using Docker and deployed to Render.
-
-- Docker builds the application image
-- Environment variables configure the database connection
-- PostgreSQL is hosted in the cloud
-- Application runs fully in production environment
-
----
-
-# 📂 Project Structure
+Or build jar:
 
 ```
-bookstore
-│
-├── config
-├── controller
-├── model
-├── repository
-├── service
-├── templates
-├── static
-├── Dockerfile
-├── pom.xml
+mvnw.cmd clean package
+java -jar target/bookstore-0.0.1-SNAPSHOT.jar
 ```
 
 ---
 
-# 🧪 API Testing
+## ☁ Deployment Process (Render)
 
-You can test JSON endpoints using:
+1. Created PostgreSQL database on Render
+2. Configured environment variables
+3. Connected GitHub repository
+4. Used Maven wrapper:
 
-- Postman
-- curl
-- Browser (for GET requests)
-
-Example:
-
-GET all books:
+Build command:
 ```
-GET /api/books
+./mvnw clean package
 ```
 
-POST new book:
+Start command:
 ```
-POST /api/books
-Content-Type: application/json
+java -jar target/bookstore-0.0.1-SNAPSHOT.jar
 ```
 
 ---
 
-# 🎓 Learning Objectives Demonstrated
+## 📁 Project Structure
 
-This project showcases:
+```
+src/
+ ├── main/
+ │    ├── java/
+ │    ├── resources/
+ │    │     ├── templates/
+ │    │     ├── static/
+ │    │     └── application.properties
+ └── test/
+```
 
-- Full CRUD operations
-- REST + MVC hybrid design
-- Entity relationships with JPA
+---
+
+## 🔒 Security
+
+- Password encryption using BCrypt
+- Authentication with Spring Security
 - Role-based authorization
-- Secure authentication flow
-- Production database integration
+
+---
+
+## 📌 Future Improvements
+
+- Cloud image storage (AWS S3 or Cloudinary)
+- REST API version
 - Docker containerization
-- Cloud deployment
+- Unit & Integration tests
+- CI/CD pipeline
 
 ---
 
-# 📈 Possible Future Enhancements
+## 👨‍💻 Author
 
-- Pagination for large book lists
-- Search & filtering
-- Book cover image upload
-- REST API documentation (Swagger)
-- Unit & integration tests
-- Admin dashboard statistics
-- Shopping cart functionality
+Kristian Lala  
+Software Engineering Student  
+Java & Spring Boot Developer  
 
 ---
 
-# 👨‍💻 Author
+## 📄 License
 
-Developed as a backend-focused Spring Boot bookstore system demonstrating full-stack fundamentals, API design, and production deployment.
-
----
+This project is for educational and portfolio purposes.
