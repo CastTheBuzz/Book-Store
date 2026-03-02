@@ -7,6 +7,7 @@ import com.kristian.bookstore.repository.UserRepository;
 
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -17,6 +18,9 @@ public class DataInitializer {
 
     @Autowired
     private UserRepository userRepository;
+    
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @PostConstruct
     public void init() {
@@ -30,13 +34,17 @@ public class DataInitializer {
         }
 
         // Admin user
-        if (userRepository.findByUsername("admin").isEmpty()) {
-            User admin = new User();
-            admin.setUsername("admin");
-            admin.setPassword("admin123"); // change later
-            admin.setRole("ROLE_ADMIN");
+       User existingAdmin = userRepository.findByUsername("admin").orElse(null);
 
-            userRepository.save(admin);
+        if (existingAdmin != null) {
+            userRepository.delete(existingAdmin);
         }
+
+        User admin = new User();
+        admin.setUsername("admin");
+        admin.setPassword(passwordEncoder.encode("admin123"));
+        admin.setRole("ROLE_ADMIN");
+
+        userRepository.save(admin);
     }
 }
